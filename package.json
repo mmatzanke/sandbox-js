@@ -3,7 +3,7 @@
   "config": {
     "namespace": "sandbox-js"
   },
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Provide a code sandbox",
   "author": "Martin Matzanke <https://github.com/mmatzanke>",
   "main": "src/index.js",
@@ -45,6 +45,5 @@
     "uglify-js": "^2.6.1",
     "unexpected": "^10.8.2"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
