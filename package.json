@@ -21,6 +21,12 @@
     "test-all": "npm test && npm run lint && npm run build"
   },
   "private": false,
+  "keywords": [
+    "sandbox",
+    "iframe",
+    "sandframe",
+    "isolation"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/mmatzanke/sandbox-js.git"
