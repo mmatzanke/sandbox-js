@@ -9,12 +9,15 @@ sandFrame.setup((iframeContent) => {
   iframeContent.contentWindow = 'anyGlobalValue';
 });
 
-sandFrame.loadScript('http://myscriptsrc').then((iframeContent) => {
-  iframeContent.contentWindow.MyScriptApi();
-}).catch((errorArray) => {
-  const error = errorArray[0];
-  const iframeContent = errorArray[1];
-  console.log(error, iframeContent);
+const setupPromise = new Promise((resolve, reject) => { // do something resolve();});
+sandFrame.setup(setupPromise).then(() => {
+  return sandFrame.loadScript('http://myscriptsrc').then((iframeContent) => {
+    iframeContent.contentWindow.MyScriptApi();
+  }).catch((errorArray) => {
+    const error = errorArray[0];
+    const iframeContent = errorArray[1];
+    console.log(error, iframeContent);
+  });
 });
 ```
 
