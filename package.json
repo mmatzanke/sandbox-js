@@ -29,13 +29,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/mmatzanke/sandbox-js.git"
+    "url": "git://github.com/mmatzanke/sandframe.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mmatzanke/sandbox-js/issues"
+    "url": "https://github.com/mmatzanke/sandframe/issues"
   },
-  "homepage": "https://github.com/mmatzanke/sandbox-js",
+  "homepage": "https://github.com/mmatzanke/sandframe",
   "devDependencies": {
     "babel-cli": "^6.7.5",
     "babel-core": "^6.5.2",
