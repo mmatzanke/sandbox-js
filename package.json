@@ -1,7 +1,7 @@
 {
-  "name": "sandbox-js",
+  "name": "sandframe",
   "config": {
-    "namespace": "sandbox-js"
+    "namespace": "sandframe"
   },
   "version": "0.1.0",
   "description": "Provide a code sandbox",
