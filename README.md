@@ -14,7 +14,7 @@ sandFrame.loadScript('http://myscriptsrc').then((iframeContent) => {
 }).catch((errorArray) => {
   const error = errorArray[0];
   const iframeContent = errorArray[1];
-  console.log(errorArray);
+  console.log(error, iframeContent);
 });
 ```
 
