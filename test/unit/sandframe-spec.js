@@ -1,9 +1,9 @@
-import Sandbox from '../../src/index';
+import SandFrame from '../../src/index.js';
 import sinon from 'sinon';
 import expect from 'unexpected';
 
 describe('Sandbox', () => {
-  let sandboxjs;
+  let sandframe;
   let global;
   let sandboxIframe;
   let sinonSandbox;
@@ -74,7 +74,7 @@ describe('Sandbox', () => {
         })
       }
     };
-    sandboxjs = new Sandbox(global);
+    sandframe = new SandFrame(global);
   });
 
   afterEach(() => {
@@ -82,8 +82,8 @@ describe('Sandbox', () => {
   });
 
   it('returns a proper interface', () => {
-    expect(sandboxjs.setup, 'to be a function');
-    expect(sandboxjs.loadScript, 'to be a function');
+    expect(sandframe.setup, 'to be a function');
+    expect(sandframe.loadScript, 'to be a function');
   });
 
   describe('.setup', () => {
@@ -94,7 +94,7 @@ describe('Sandbox', () => {
         const { contentWindow } = sandbox;
         contentWindow.changedValue = changedValue;
       });
-      return sandboxjsox.setup(setupFunctionSync).then(updatedSandbox => {
+      return sandframe.setup(setupFunctionSync).then(updatedSandbox => {
         expect(setupFunctionSync.firstCall.args[0], 'to be', sandboxIframe);
         expect(setupFunctionSync.callCount, 'to be', 1);
         expect(updatedSandbox.contentWindow.changedValue, 'to be', changedValue);
@@ -103,7 +103,7 @@ describe('Sandbox', () => {
 
     it('rejects if the given sync setupFunction is throws an error', () => {
       const setupFunctionAsync = sinonSandbox.stub().throws();
-      return expect(sandboxjs.setup(setupFunctionAsync), 'to be rejected');
+      return expect(sandframe.setup(setupFunctionAsync), 'to be rejected');
     });
 
     it('calls the given async promised setupFunction with the sandboxIframe as parameter and' +
@@ -114,7 +114,7 @@ describe('Sandbox', () => {
         contentWindow.changedValue = changedValue;
         return Promise.resolve();
       });
-      return sandboxjs.setup(setupFunctionAsync).then(updatedSandbox => {
+      return sandframe.setup(setupFunctionAsync).then(updatedSandbox => {
         expect(setupFunctionAsync.firstCall.args[0], 'to be', sandboxIframe);
         expect(setupFunctionAsync.callCount, 'to be', 1);
         expect(updatedSandbox.contentWindow.changedValue, 'to be', changedValue);
@@ -125,7 +125,7 @@ describe('Sandbox', () => {
       const setupFunctionAsync = sinonSandbox.spy(() => {
         return Promise.reject();
       });
-      return expect(sandboxjs.setup(setupFunctionAsync), 'to be rejected');
+      return expect(sandframe.setup(setupFunctionAsync), 'to be rejected');
     });
   });
 
@@ -142,9 +142,9 @@ describe('Sandbox', () => {
       const scriptDOMNodeToBeDeleted = {
         remove: sinonSandbox.spy()
       };
-      return sandboxjs.loadScript(src).then(() => {
+      return sandframe.loadScript(src).then(() => {
         querySelectorArray.push(scriptDOMNodeToBeDeleted);
-        return sandboxjs.loadScript(src).then(() => {
+        return sandframe.loadScript(src).then(() => {
           const { contentDocument: { querySelectorAll } } = sandboxIframe;
           expect(querySelectorAll.callCount, 'to be', 2);
           expect(querySelectorAll.alwaysCalledWith(`script[src='${src}']`), 'to be', true);
@@ -155,7 +155,7 @@ describe('Sandbox', () => {
 
     describe('with script.onload loading event', () => {
       it('resolves to the sandboxIframe itself', () => {
-        return sandboxjs.loadScript(src).then(updatedSandBox => {
+        return sandframe.loadScript(src).then(updatedSandBox => {
           expect(updatedSandBox, 'to be', sandboxIframe);
         });
       });
@@ -172,7 +172,7 @@ describe('Sandbox', () => {
       });
 
       it('rejects to an array [error, sandboxIframe]', () => {
-        return sandboxjs.loadScript(src).catch(args => {
+        return sandframe.loadScript(src).catch(args => {
           const err = args[0];
           const sandbox = args[1];
           expect(err, 'to be', loadingError);

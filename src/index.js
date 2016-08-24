@@ -49,12 +49,12 @@ export default function (global) {
           const { contentDocument } = sandbox;
           const script = contentDocument.createElement('script');
           script.src = src;
-          script.onload(() => {
+          script.onload = () => {
             resolve(sandbox);
-          });
-          script.onerror((error) => {
+          };
+          script.onerror = (error) => {
             reject([error, sandbox]);
-          });
+          };
 
           contentDocument.getElementsByTagName('head')[0].appendChild(script);
         });

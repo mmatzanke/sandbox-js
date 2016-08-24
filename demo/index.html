@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../dist/sandframe.max.js"></script>
+</head>
+<body>
+<script>
+  var sandframeExample = new sandframe.default(window);
+  sandframeExample.setup(function(sandbox){
+    sandbox.contentWindow.myDeclaredGlobal = 'myGlobalSetup';
+  }).then(function() {
+    return sandframeExample.loadScript('http://localhost:8080/demo/js/myscript.js').then(function(sandbox) {
+      sandbox.contentWindow.MyApi.someMethod('myMessage');
+    });
+  });
+
+
+</script>
+
+</body>
+</html>
