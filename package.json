@@ -3,7 +3,7 @@
   "config": {
     "namespace": "sandframe"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Provide a code sandbox",
   "author": "Martin Matzanke <https://github.com/mmatzanke>",
   "main": "src/index.js",
