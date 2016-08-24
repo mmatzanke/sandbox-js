@@ -11,7 +11,7 @@
   sandframeExample.setup(function(sandbox){
     sandbox.contentWindow.myDeclaredGlobal = 'myGlobalSetup';
   }).then(function() {
-    return sandframeExample.loadScript('http://localhost:8080/demo/js/myscript.js').then(function(sandbox) {
+    return sandframeExample.loadScript('./js/myscript.js').then(function(sandbox) {
       sandbox.contentWindow.MyApi.someMethod('myMessage');
     });
   });
